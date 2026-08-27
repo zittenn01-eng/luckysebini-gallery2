@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 세비니의 갤러리 (Lucky Sebini Gallery) 🎨
 
-## Getting Started
+이세빈 작가의 작품을 소개하고 판매하는 온라인 아트 갤러리 웹 애플리케이션입니다.
 
-First, run the development server:
+## ✨ 주요 기능
+
+- **메인 갤러리 (`/`)**: 감성적인 갤러리 UI, 카테고리별 실시간 필터링, 부드러운 카드 호버 인터랙션
+- **작품 상세 페이지 (`/artworks/[id]`)**: 6:4 분할 레이아웃, 상세 스펙(재료, 크기, 연도), 태그, 판매 상태 표시 및 구매 모달
+- **관리자 페이지 (`/admin`)**: 비밀번호 인증, 작품 목록 조회/상태 변경, CSV 대량 업로드
+- **데이터베이스 연동**: Supabase DB (`artworks`, `orders`) 연동 및 RLS 보안 정책 적용
+- **데이터 시딩 (`scripts/seed.ts`)**: CSV 데이터 파싱 및 Supabase 일괄 삽입
+
+## 🛠️ 기술 스택
+
+- **Framework**: Next.js 14+ (App Router, TypeScript)
+- **Styling**: Tailwind CSS, Google Fonts (Noto Serif KR, Playfair Display)
+- **Database / Backend**: Supabase (PostgreSQL, RLS, Storage)
+- **Tools**: Papaparse, Lucide React, TSX
+
+## 🚀 시작하기
+
+### 1. 환경 변수 설정
+`.env.example` 파일을 복사하여 `.env.local`을 생성하고 키 값을 입력합니다.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env.local
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. 패키지 설치
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. 데이터베이스 초기화 및 시드
+1. Supabase SQL Editor에서 `scripts/schema.sql`을 실행하여 테이블을 생성합니다.
+2. 아래 명령어로 초기 데이터를 삽입합니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run seed
+```
 
-## Learn More
+### 4. 개발 서버 실행
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속합니다.
